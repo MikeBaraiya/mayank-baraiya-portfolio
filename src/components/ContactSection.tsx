@@ -242,7 +242,7 @@ const ContactSection = () => {
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => handleChange('phone', e.target.value)}
-                  placeholder="+91 6354799219"
+                  placeholder="+91 9876543210"
                   className={`bg-secondary/50 border-border/50 focus:border-primary ${errors.phone ? 'border-red-500' : ''}`}
                   disabled={isLoading}
                 />

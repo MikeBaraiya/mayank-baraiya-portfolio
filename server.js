@@ -1,5 +1,6 @@
 import express from 'express';
-import nodemailer from 'nodemailer';
+// import nodemailer from 'nodemailer'; // Commented out - replaced with Resend
+import { Resend } from 'resend';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
@@ -9,6 +10,7 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const API_URL = process.env.VITE_API_URL;
 
 // Middleware
 app.use(cors());
@@ -150,17 +152,29 @@ function generateUserEmail(name, message, email, phone) {
 
 // Validate environment variables
 const validateCredentials = () => {
-    const email = process.env.GMAIL_EMAIL;
-    const password = process.env.GMAIL_APP_PASSWORD;
+    const apiKey = process.env.RESEND_API_KEY;
 
-    if (!email || !password || password.includes('your-')) {
-        console.warn('⚠️  Gmail credentials not configured properly');
-        console.warn('Please set GMAIL_EMAIL and GMAIL_APP_PASSWORD in .env file');
+    if (!apiKey) {
+        console.warn('⚠️  Resend API key not configured properly');
+        console.warn('Please set RESEND_API_KEY in .env file');
+        console.warn('Get your API key from: https://resend.com/api-keys');
         return false;
     }
     return true;
 };
 
+// Initialize Resend client
+let resend = null;
+
+if (validateCredentials()) {
+    resend = new Resend(process.env.RESEND_API_KEY);
+    console.log('✅ Resend API initialized successfully!');
+    console.log('📧 Email service ready');
+} else {
+    console.log('⚠️  Email functionality disabled - Resend API key not configured');
+}
+
+/* GMAIL SMTP CODE - COMMENTED OUT (Replaced with Resend)
 // Create Nodemailer transporter with Google SMTP
 let transporter = null;
 
@@ -200,13 +214,14 @@ if (validateCredentials()) {
 } else {
     console.log('⚠️  Email functionality disabled - credentials not configured');
 }
+*/
 
 // Email endpoint
 app.post('/api/send-contact-email', async (req, res) => {
     try {
-        if (!transporter) {
+        if (!resend) {
             return res.status(500).json({
-                error: 'Email service not configured. Please set GMAIL_EMAIL and GMAIL_APP_PASSWORD in .env file',
+                error: 'Email service not configured. Please set RESEND_API_KEY in .env file',
             });
         }
 
@@ -267,25 +282,23 @@ app.post('/api/send-contact-email', async (req, res) => {
             });
         }
 
-        // Email to yourself (admin)
-        const adminMailOptions = {
-            from: process.env.GMAIL_EMAIL,
-            to: process.env.GMAIL_EMAIL,
+        // Send email to yourself (admin) using Resend
+        const adminEmail = await resend.emails.send({
+            from: 'Portfolio Contact <onboarding@resend.dev>', // Resend's test email
+            to: process.env.ADMIN_EMAIL || '002mikebaraiya@gmail.com',
             subject: `🎉 New Contact Form Submission from ${name}`,
             html: generateAdminEmail(name, email, phone, message),
-        };
+        });
 
-        // Confirmation email to user
-        const userMailOptions = {
-            from: process.env.GMAIL_EMAIL,
+        // Send confirmation email to user using Resend
+        const userEmail = await resend.emails.send({
+            from: 'Mayank Baraiya <onboarding@resend.dev>', // Resend's test email
             to: email,
             subject: 'We received your message - Mayank Baraiya',
             html: generateUserEmail(name, message, email, phone),
-        };
+        });
 
-        // Send emails
-        await transporter.sendMail(adminMailOptions);
-        await transporter.sendMail(userMailOptions);
+        console.log('✅ Emails sent successfully:', { adminEmail: adminEmail.data?.id, userEmail: userEmail.data?.id });
 
         res.status(200).json({
             success: true,
@@ -304,31 +317,31 @@ app.post('/api/send-contact-email', async (req, res) => {
 app.get('/api/health', (req, res) => {
     res.json({
         status: 'Server is running',
-        emailConfigured: transporter ? 'Yes' : 'No'
+        emailService: 'Resend',
+        emailConfigured: resend ? 'Yes' : 'No'
     });
 });
 
 // Test email endpoint
 app.post('/api/test-email', async (req, res) => {
     try {
-        if (!transporter) {
+        if (!resend) {
             return res.status(500).json({
-                error: 'Email service not configured',
+                error: 'Email service not configured. Please set RESEND_API_KEY in .env file',
             });
         }
 
-        const testMail = {
-            from: process.env.GMAIL_EMAIL,
-            to: process.env.GMAIL_EMAIL,
+        const testEmail = await resend.emails.send({
+            from: 'Test <onboarding@resend.dev>',
+            to: process.env.ADMIN_EMAIL || '002mikebaraiya@gmail.com',
             subject: 'Test Email from Portfolio Server',
-            html: '<h2 style="color:#00d9d9;">Test Email</h2><p>If you received this, your email configuration is working!</p>',
-        };
-
-        await transporter.sendMail(testMail);
+            html: '<h2 style="color:#00d9d9;">Test Email</h2><p>If you received this, your Resend email configuration is working!</p>',
+        });
 
         res.status(200).json({
             success: true,
             message: 'Test email sent successfully!',
+            emailId: testEmail.data?.id
         });
     } catch (error) {
         console.error('Test email error:', error);
@@ -353,8 +366,8 @@ if (process.env.NODE_ENV === 'production' || process.env.render) {
 }
 
 app.listen(PORT, () => {
-    console.log(`\n🚀 Email server running on http://localhost:${PORT}`);
-    console.log(`📧 Email endpoint: POST http://localhost:${PORT}/api/send-contact-email`);
-    console.log(`🧪 Test endpoint: POST http://localhost:${PORT}/api/test-email`);
-    console.log(`❤️  Health check: GET http://localhost:${PORT}/api/health\n`);
+    console.log(`\n🚀 Email server running on ${API_URL}`);
+    console.log(`📧 Email endpoint: POST ${API_URL}/api/send-contact-email`);
+    console.log(`🧪 Test endpoint: POST ${API_URL}/api/test-email`);
+    console.log(`❤️  Health check: GET ${API_URL}/api/health\n`);
 });

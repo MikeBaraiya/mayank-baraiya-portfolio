@@ -24,8 +24,69 @@ Result-oriented Backend Developer skilled in building scalable APIs, developing 
 
 This project is built with:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Frontend
+- **Vite** - Fast build tool
+- **TypeScript** - Type-safe JavaScript
+- **React** - UI library
+- **shadcn-ui** - Component library
+- **Tailwind CSS** - Utility-first CSS
+
+### Backend
+- **Node.js** - Runtime environment
+- **Express** - Web framework
+- **Resend** - Email API service
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18+ installed
+- Resend account (free tier available)
+
+### Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/MikeBaraiya/mayank-baraiya-portfolio.git
+   cd mayank-baraiya-portfolio
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Configure environment variables**
+   ```bash
+   cp .env.example .env
+   ```
+   
+   Then update `.env` with your Resend API key:
+   ```env
+   RESEND_API_KEY=re_your_api_key_here
+   ADMIN_EMAIL=002mikebaraiya@gmail.com
+   PORT=5001
+   ```
+
+4. **Run development server**
+   ```bash
+   npm run dev:full
+   ```
+   
+   - Frontend: http://localhost:8080
+   - Backend API: http://localhost:5001
+
+### Build for Production
+
+```bash
+npm run build
+npm start
+```
+
+## 📧 Email Setup
+
+See `RESEND_SETUP.md` for detailed email configuration instructions.
+
+## 🌐 Deployment
+
+See `RENDER_DEPLOYMENT.md` for deployment instructions to Render or other hosting providers.
+
