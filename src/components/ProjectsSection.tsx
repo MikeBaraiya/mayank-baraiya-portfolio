@@ -3,53 +3,77 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const projects = [
   {
-    title: "E-commerce Platform",
-    description: "A full-stack e-commerce solution with payment integration, inventory management, and admin dashboard",
-    technologies: ["Laravel", "React JS", "MySQL", "Stripe", "AWS"],
+    title: "Healthcare Management System",
+    description: "Comprehensive healthcare platform for managing patient records, appointments, billing, and telemedicine consultations with integrated video conferencing.",
+    technologies: ["Laravel", "MySQL", "Stripe", "PayPal", "Zoom API", "Twilio", "Vonage(OpenTok) API", "Git"],
     github: "#",
-    live: "#",
-    highlights: ["Payment Integration", "Real-time Inventory", "Admin Dashboard"]
+    live: "https://yo-vivo.co/",
+    highlights: ["Payment Integration", "Telemedicine", "Admin Dashboard", "Patient Management"]
   },
   {
-    title: "Automation Workflow System",
-    description: "Custom automation platform using n8n and Zapier for workflow orchestration and data synchronization",
-    technologies: ["n8n", "Zapier", "Node.js", "PostgreSQL", "REST API"],
+    title: "AI-Powered Product Recommendation Engine",
+    description: "Intelligent automation system that analyzes user preferences from form submissions and recommends personalized products using AI models with n8n workflow integration.",
+    technologies: ["n8n", "WordPress", "AI models", "Gravity Form"],
     github: "#",
-    live: "#",
-    highlights: ["Workflow Automation", "Data Sync", "Multi-Platform"]
+    live: null,
+    highlights: ["AI Integration", "Workflow Automation", "Form Processing"]
   },
   {
-    title: "Real-time Chat Application",
-    description: "Interactive chat application with real-time messaging, user presence, and file sharing capabilities",
-    technologies: ["React JS", "Node.js", "WebSockets", "MongoDB", "Socket.io"],
+    title: "Property Rental Platform",
+    description: "Full-featured property rental platform with integrated payment processing, geolocation services, user reviews, and performance optimization.",
+    technologies: ["Laravel", "Caching", "Calendar", "HTML", "CSS", "JavaScript", "Git"],
     github: "#",
-    live: "#",
-    highlights: ["Real-time Messaging", "File Sharing", "User Presence"]
+    live: "https://primeestate.com.au/",
+    highlights: ["Third-Party APIs", "Performance Optimization", "Review System"]
   },
   {
-    title: "Cloud Infrastructure Dashboard",
-    description: "Management dashboard for monitoring and controlling AWS, GCP, and DigitalOcean resources",
-    technologies: ["PHP", "Laravel", "AWS", "GCP", "Docker"],
+    title: "Loan Management System",
+    description: "End-to-end loan management platform enabling user registration, KYC verification, loan applications, document e-signing, approval workflows, and disbursement.",
+    technologies: ["PHP", "Laravel", "Twilio", "Plaid API", "DocuSign API", "Git"],
     github: "#",
-    live: "#",
-    highlights: ["Multi-Cloud Support", "Real-time Monitoring", "Cost Analysis"]
+    live: "https://portal.tbbigroup.net/",
+    highlights: ["KYC Integration", "E-Signature", "Approval Workflows", "Multi-Domain Support"]
   },
   {
-    title: "AI-Powered Content Generator",
-    description: "Application leveraging OpenAI and Claude APIs for automated content generation and optimization",
-    technologies: ["React JS", "Node.js", "OpenAI API", "Claude API", "Supabase"],
+    title: "AI Script Analysis & Report Generator",
+    description: "Platform for film industry professionals to upload screenplays and generate comprehensive AI-powered reports including character analysis, plot structure, and dialogue evaluation.",
+    technologies: ["Laravel", "OpenAI API", "AWS", "SES", "RDS", "Stripe", "Voyager", "CI/CD", "Git"],
     github: "#",
-    live: "#",
-    highlights: ["AI Integration", "Content Generation", "Quality Optimization"]
+    live: "https://first-look.net/",
+    highlights: ["AI Integration", "Report Generation", "Subscription Plans"]
   },
   {
-    title: "DevOps CI/CD Pipeline",
-    description: "Custom CI/CD pipeline setup with GitHub Actions, automated testing, and deployment workflows",
-    technologies: ["GitHub Actions", "Docker", "Nginx", "Linux", "Git"],
+    title: "Expense Splitting & Payment Calendar",
+    description: "Group expense management application allowing users to track shared expenses and automatically split payments among group members with detailed financial records.",
+    technologies: ["Laravel", "MySQL", "HTML", "CSS", "JavaScript", "Bitbucket"],
     github: "#",
-    live: "#",
-    highlights: ["Automated Testing", "Continuous Deployment", "Infrastructure as Code"]
-  }
+    live: "https://splitwise.expertroofingguide.com/",
+    highlights: ["Group Management", "Expense Tracking", "Payment Splitting"]
+  },
+  {
+    title: "Shopify Order Management & Automation",
+    description: "Enterprise order management system integrating with Shopify and multiple vendor platforms, automating order distribution, inventory management, and multi-format report generation.",
+    technologies: ["Laravel", "MySQL RDS", "AWS", "Shopify API", "JavaScript", "CI/CD", "Google SSO", "XML/PDF", "FTP/SFTP", "Git"],
+    github: "#",
+    live: "https://ubereats-packaging.com/",
+    highlights: ["Shopify Integration", "Order Automation", "Multi-Vendor", "Role-Based Access"]
+  },
+  {
+    title: "Food Delivery Application",
+    description: "Full-service food delivery platform enabling restaurant management, menu customization, order processing, inventory tracking, and subscription-based billing systems.",
+    technologies: ["AWS", "PHP", "HTML", "CSS", "JavaScript", "MySQL", "Git Lab", "Laravel APIs"],
+    github: "#",
+    live: "https://www.foober.com.au/",
+    highlights: ["Menu Management", "Order Processing", "Subscription Plans", "Invoice Generation"]
+  },
+  {
+    title: "Scape details form the LinkedIn via Google Sheet",
+    description: "Automation workflow that scrapes LinkedIn profile details based on a list of profile URLs in Google Sheets and populates the data back into the sheet using Google AppScript.",
+    technologies: ["Google AppScript", "LinkedIn Scraping", "Google Sheets", "Bright Data API", "Python", "Puppeteer"],
+    github: "#",
+    live: null,
+    highlights: ["Data Scraping", "Google Sheets Integration", "Automation"]
+  },
 ];
 
 const ProjectsSection = () => {
@@ -69,11 +93,11 @@ const ProjectsSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto justify-items-center">
           {projects.map((project, index) => (
             <div
               key={project.title}
-              className="group relative overflow-hidden rounded-xl border border-border/50 hover:border-primary/30 transition-all duration-300 opacity-0 animate-fade-in bg-gradient-card hover:shadow-lg hover:scale-105 hover:-translate-y-2"
+              className="group relative overflow-hidden rounded-xl border border-border/50 hover:border-primary/30 transition-all duration-300 opacity-0 animate-fade-in bg-gradient-card hover:shadow-lg hover:scale-105 hover:-translate-y-2 w-full max-w-sm"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Background gradient */}
@@ -119,20 +143,17 @@ const ProjectsSection = () => {
 
                 {/* Links */}
                 <div className="flex gap-4 pt-4 border-t border-border/30">
-                  <a
-                    href={project.github}
-                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    <Github className="w-4 h-4" />
-                    Code
-                  </a>
+                  {project.live && (
                   <a
                     href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     <ExternalLink className="w-4 h-4" />
                     Live Demo
                   </a>
+                  )}
                 </div>
               </div>
             </div>

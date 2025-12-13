@@ -1,3 +1,6 @@
+# Ignore node_modules, build outputs, and environment-specific files
+.env
+
 # Logs
 logs
 *.log
