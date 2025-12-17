@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Send, AlertCircle } from "lucide-react";
+import { Mail, Phone, MapPin, Send, AlertCircle, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -148,6 +148,22 @@ const ContactSection = () => {
 
             <div className="space-y-6">
               <a
+                href="https://www.linkedin.com/in/mayank-baraiya"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 p-4 rounded-xl bg-gradient-card border border-border/50 hover:border-primary/30 transition-all group opacity-0 animate-fade-in"
+                style={{ animationDelay: '0s' }}
+              >
+                <div className="w-12 h-12 rounded-lg bg-[#0A66C2]/10 flex items-center justify-center group-hover:bg-[#0A66C2]/20 transition-colors">
+                  <Linkedin className="w-5 h-5 text-[#0A66C2]" />
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">LinkedIn</p>
+                  <p className="font-mono text-foreground">Mayank Baraiya</p>
+                </div>
+              </a>
+
+              <a
                 href="mailto:002mikebaraiya@gmail.com"
                 className="flex items-center gap-4 p-4 rounded-xl bg-gradient-card border border-border/50 hover:border-primary/30 transition-all group opacity-0 animate-fade-in"
                 style={{ animationDelay: '0.1s' }}
@@ -166,8 +182,8 @@ const ContactSection = () => {
                 className="flex items-center gap-4 p-4 rounded-xl bg-gradient-card border border-border/50 hover:border-primary/30 transition-all group opacity-0 animate-fade-in"
                 style={{ animationDelay: '0.2s' }}
               >
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <Phone className="w-5 h-5 text-primary" />
+                <div className="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center group-hover:bg-green-500/20 transition-colors">
+                  <Phone className="w-5 h-5 text-green-500" />
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Phone</p>
