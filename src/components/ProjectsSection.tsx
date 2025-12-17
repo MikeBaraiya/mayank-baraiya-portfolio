@@ -45,7 +45,7 @@ const projects = [
   {
     title: "Loan Management System",
     description: "End-to-end loan management platform enabling user registration, KYC verification, loan applications, document e-signing, approval workflows, and disbursement.",
-    technologies: ["PHP", "Laravel", "Twilio", "Plaid API", "DocuSign API", "Git"],
+    technologies: ["Laravel v12", "Twilio", "Plaid API", "DocuSign API", "Git"],
     github: "#",
     live: "https://portal.tbbigroup.net/",
     highlights: ["KYC Integration", "E-Signature", "Approval Workflows", "Multi-Domain Support"]
@@ -53,7 +53,7 @@ const projects = [
   {
     title: "AI Script Analysis & Report Generator",
     description: "Platform for film industry professionals to upload screenplays and generate comprehensive AI-powered reports including character analysis, plot structure, and dialogue evaluation.",
-    technologies: ["Laravel", "OpenAI API", "AWS", "SES", "RDS", "Stripe", "Voyager", "CI/CD", "Git"],
+    technologies: ["Laravel v9", "OpenAI API", "AWS", "SES", "RDS", "Stripe", "Voyager", "CI/CD", "Git"],
     github: "#",
     live: "https://first-look.net/",
     highlights: ["AI Integration", "Report Generation", "Subscription Plans"]
@@ -61,7 +61,7 @@ const projects = [
   {
     title: "Expense Splitting & Payment Calendar",
     description: "Group expense management application allowing users to track shared expenses and automatically split payments among group members with detailed financial records.",
-    technologies: ["Laravel", "MySQL", "HTML", "CSS", "JavaScript", "Bitbucket"],
+    technologies: ["Laravel v10", "MySQL", "HTML", "CSS", "JavaScript", "Bitbucket"],
     github: "#",
     live: "https://splitwise.expertroofingguide.com/",
     highlights: ["Group Management", "Expense Tracking", "Payment Splitting"]
@@ -69,7 +69,7 @@ const projects = [
   {
     title: "Shopify Order Management & Automation",
     description: "Enterprise order management system integrating with Shopify and multiple vendor platforms, automating order distribution, inventory management, and multi-format report generation.",
-    technologies: ["Laravel", "MySQL RDS", "AWS", "Shopify API", "JavaScript", "CI/CD", "Google SSO", "XML/PDF", "FTP/SFTP", "Git"],
+    technologies: ["Laravel v11", "MySQL RDS", "AWS", "Shopify API", "JavaScript", "CI/CD", "Google SSO", "XML/PDF", "FTP/SFTP", "Git"],
     github: "#",
     live: "https://ubereats-packaging.com/",
     highlights: ["Shopify Integration", "Order Automation", "Multi-Vendor", "Role-Based Access"]
