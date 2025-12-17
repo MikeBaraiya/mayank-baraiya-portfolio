@@ -3,28 +3,44 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const projects = [
   {
-    title: "Healthcare Management System",
-    description: "Comprehensive healthcare platform for managing patient records, appointments, billing, and telemedicine consultations with integrated video conferencing.",
-    technologies: ["Laravel", "MySQL", "Stripe", "PayPal", "Zoom API", "Twilio", "Vonage(OpenTok) API", "Git"],
+    title: "Novaeo Recruitment",
+    description: "A recruitment platform developed with Laravel v10 and MySQL, designed to simplify hiring workflows. It includes a role-based access control system for secure and efficient user management. The platform supports real-time communication through SMTP (email) for notifications and updates.",
+    technologies: ["Laravel v10", "MySQL", "SMTP", "RBAC", "Git"],
     github: "#",
-    live: "https://yo-vivo.co/",
-    highlights: ["Payment Integration", "Telemedicine", "Admin Dashboard", "Patient Management"]
+    live: "https://novaeo.co",
+    highlights: ["Candidate Management", "Job Posting", "Automated Notifications", "Scalable Architecture"]
   },
   {
-    title: "AI-Powered Product Recommendation Engine",
-    description: "Intelligent automation system that analyzes user preferences from form submissions and recommends personalized products using AI models with n8n workflow integration.",
-    technologies: ["n8n", "WordPress", "AI models", "Gravity Form"],
+    title: "Preachathon Donation",
+    description: "A charity donation platform focused on supporting children in need, built with CodeIgniter v4 and MySQL. It integrates PayPal and Kanno Payment for secure transactions and stores donation details in Google Sheets for transparent tracking.",
+    technologies: ["CodeIgniter v4", "MySQL", "PayPal", "Kanno Payment", "Google Sheets API", "Git"],
     github: "#",
-    live: null,
-    highlights: ["AI Integration", "Workflow Automation", "Form Processing"]
+    live: "https://preachathon.org",
+    highlights: ["Secure Payments", "Google Sheets Integration", "Donor Engagement", "Transparent Tracking"]
+  },
+  {
+    title: "Content Corner",
+    description: "A content writing and blog publishing platform built with Laravel v10, featuring Stripe integration for subscription management with monthly, quarterly, and yearly plans. The platform includes real-time notifications via Twilio (SMS), Redis, and SMTP (email). It integrates ChatGPT API to generate blogs and content.",
+    technologies: ["Laravel v10", "Stripe", "ChatGPT API", "Twilio", "Redis", "SMTP", "DigitalOcean", "Git"],
+    github: "#",
+    live: "https://contentcorner.io",
+    highlights: ["AI Content Generation", "Subscription Plans", "Real-time Notifications", "Multi-Subdomain Management"]
+  },
+  {
+    title: "Healthcare Management System",
+    description: "A healthcare platform built with CodeIgniter v3 and MySQL, designed to streamline virtual healthcare services. It integrates secure payment gateways (Stripe, PayPal, GCash) for seamless transactions and supports real-time communication through Twilio for SMS and SMTP for email. The platform enables virtual consultations via Vonage API for video and voice calls and meeting with the Zoom Meeting API.",
+    technologies: ["CodeIgniter v3", "MySQL", "Stripe", "PayPal", "GCash", "Twilio", "Vonage API", "SMTP", "Git", "Zoom Meeting"],
+    github: "#",
+    live: "https://yo-vivo.co/",
+    highlights: ["Virtual Consultations", "Multi-Payment Gateway", "Real-time Communication", "Video & Voice Calls"]
   },
   {
     title: "Property Rental Platform",
-    description: "Full-featured property rental platform with integrated payment processing, geolocation services, user reviews, and performance optimization.",
-    technologies: ["Laravel", "Caching", "Calendar", "HTML", "CSS", "JavaScript", "Git"],
+    description: "A real estate platform developed with Laravel v8, integrated with APIs to display property details. Features include generating QR codes for agents to facilitate direct contact and sales, and using mPDF to generate property brochures from API data. The platform enhances property browsing and agent outreach capabilities.",
+    technologies: ["Laravel v8", "MySQL", "mPDF", "QR Code", "API Integration", "HTML", "CSS", "JavaScript", "Git"],
     github: "#",
     live: "https://primeestate.com.au/",
-    highlights: ["Third-Party APIs", "Performance Optimization", "Review System"]
+    highlights: ["QR Code Generation", "PDF Brochures", "API Integration", "Agent Outreach"]
   },
   {
     title: "Loan Management System",
@@ -60,11 +76,11 @@ const projects = [
   },
   {
     title: "Food Delivery Application",
-    description: "Full-service food delivery platform enabling restaurant management, menu customization, order processing, inventory tracking, and subscription-based billing systems.",
-    technologies: ["AWS", "PHP", "HTML", "CSS", "JavaScript", "MySQL", "Git Lab", "Laravel APIs"],
+    description: "A food delivery platform built with Core PHP for the backend, Laravel for server-side management. It offers daily tiffin delivery with flexible time slots. Features include Stripe payment integration for one-time payments and monthly subscriptions.",
+    technologies: ["Core PHP", "Laravel", "MySQL", "Stripe", "HTML", "CSS", "JavaScript", "Git Lab"],
     github: "#",
     live: "https://www.foober.com.au/",
-    highlights: ["Menu Management", "Order Processing", "Subscription Plans", "Invoice Generation"]
+    highlights: ["Daily Tiffin Delivery", "Flexible Time Slots", "Stripe Integration", "Role-Based System"]
   },
   {
     title: "Scape details form the LinkedIn via Google Sheet",
@@ -74,6 +90,14 @@ const projects = [
     live: null,
     highlights: ["Data Scraping", "Google Sheets Integration", "Automation"]
   },
+  {
+    title: "AI-Powered Product Recommendation Engine",
+    description: "Intelligent automation system that analyzes user preferences from form submissions and recommends personalized products using AI models with n8n workflow integration.",
+    technologies: ["n8n", "WordPress", "AI models", "Gravity Form"],
+    github: "#",
+    live: null,
+    highlights: ["AI Integration", "Workflow Automation", "Form Processing"]
+  },
 ];
 
 const ProjectsSection = () => {
@@ -81,7 +105,7 @@ const ProjectsSection = () => {
   return (
     <section ref={sectionRef} id="projects" className="py-24 relative opacity-0">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
-      
+
       <div className="container relative z-10 px-4">
         <div className="text-center mb-16">
           <span className="font-mono text-primary text-sm tracking-wider uppercase">Showcase</span>
@@ -102,7 +126,7 @@ const ProjectsSection = () => {
             >
               {/* Background gradient */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              
+
               <div className="relative z-10 p-6 flex flex-col h-full">
                 {/* Header */}
                 <div className="mb-4">
@@ -144,15 +168,15 @@ const ProjectsSection = () => {
                 {/* Links */}
                 <div className="flex gap-4 pt-4 border-t border-border/30">
                   {project.live && (
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    Live Demo
-                  </a>
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      Live Demo
+                    </a>
                   )}
                 </div>
               </div>
