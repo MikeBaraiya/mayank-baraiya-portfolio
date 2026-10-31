@@ -34,27 +34,27 @@ const HeroSection = () => {
   const handleMouseLeave = () => setTilt({ x: 0, y: 0 });
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden opacity-0">
+    <section ref={sectionRef} className="relative flex min-h-[calc(100vh-80px)] items-center justify-center overflow-hidden pt-20 pb-8 opacity-0">
       <div className="absolute inset-0 bg-gradient-hero" />
       <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-primary/5 blur-3xl animate-pulse-slow" />
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-accent/5 blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }} />
 
-      <div className="container relative z-10 px-4 py-20">
-        <div className="grid lg:grid-cols-[1.15fr_0.85fr] items-center gap-10 lg:gap-14">
+      <div className="container relative z-10 px-4 py-6 md:py-10">
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.9fr)] lg:gap-8 xl:gap-10">
           <div className="text-center lg:text-left">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-glow mb-8 opacity-0 animate-fade-in" style={{ animationDelay: '0.1s' }}>
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
               <span className="text-sm font-mono text-muted-foreground">Available for opportunities</span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 opacity-0 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight mb-6 opacity-0 animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <span className="text-foreground">Mayank</span>{" "}
               <span className="text-gradient">Baraiya</span>
             </h1>
 
             <div className="flex items-center justify-center lg:justify-start gap-3 mb-8 opacity-0 animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <div className="h-px w-12 bg-gradient-to-r from-transparent to-primary" />
-              <p className="text-xl md:text-2xl font-mono text-primary">
+              <p className="text-base sm:text-xl md:text-2xl font-mono text-primary">
                 Fullstack Developer • AI Automation
               </p>
               <div className="h-px w-12 bg-gradient-to-l from-transparent to-primary" />
@@ -64,14 +64,14 @@ const HeroSection = () => {
               Fullstack developer with <span className="text-foreground font-semibold">5+ years</span> of hands-on experience in <span className="text-foreground font-semibold">Laravel, Next.js, Node.js, Express, React, Python, and backend architecture</span>, now focused on <span className="text-foreground font-semibold">AI automation, voice agents, and product-grade digital experiences</span>. I combine clean UI thinking with scalable engineering to build solutions that are both beautiful and effective.
             </p>
 
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 mb-10 opacity-0 animate-fade-in" style={{ animationDelay: '0.5s' }}>
+            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-6 mb-10 opacity-0 animate-fade-in" style={{ animationDelay: '0.5s' }}>
               <a href="mailto:002mikebaraiya@gmail.com" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors group">
                 <Mail className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                <span className="font-mono text-sm">002mikebaraiya@gmail.com</span>
+                <span className="font-mono text-xs sm:text-sm break-all">002mikebaraiya@gmail.com</span>
               </a>
               <a href="tel:+916354799219" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors group">
                 <Phone className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                <span className="font-mono text-sm">+91 6354799219</span>
+                <span className="font-mono text-xs sm:text-sm">+91 6354799219</span>
               </a>
             </div>
 
@@ -91,7 +91,7 @@ const HeroSection = () => {
             </div>
           </div>
 
-          <div className="relative flex justify-center lg:justify-end">
+          <div className="relative flex justify-center">
             <div
               className="hero-3d-shell"
               onMouseMove={handleMouseMove}
@@ -112,7 +112,7 @@ const HeroSection = () => {
 
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent" />
 
-                <div className="absolute inset-x-0 bottom-0 p-5">
+                <div className="hero-specialty-dock absolute inset-x-0 bottom-0 p-5">
                   <div className="flex items-center justify-between gap-3 rounded-2xl border border-cyan-400/20 bg-slate-950/80 p-3 shadow-[0_0_30px_rgba(45,212,191,0.12)] backdrop-blur-md">
                     <div>
                       <p className="text-[10px] uppercase tracking-[0.25em] text-cyan-200/80">Specializing in</p>

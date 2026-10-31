@@ -128,7 +128,7 @@
 
   .hero-3d-shell {
     position: relative;
-    width: min(100%, 520px);
+    width: min(100%, 420px);
     transform-style: preserve-3d;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     will-change: transform;
@@ -182,10 +182,75 @@
   .hero-photo-frame img {
     display: block;
     width: 100%;
-    height: 620px;
+    height: clamp(380px, 52vh, 520px);
     object-fit: cover;
+    object-position: center top;
     filter: saturate(1.08) contrast(1.06) brightness(0.98);
-    transform: translateZ(30px) scale(1.04);
+    transform: translateZ(30px);
+  }
+
+  @media (max-width: 768px) {
+    .hero-3d-shell {
+      width: min(100%, 420px);
+    }
+
+    .hero-photo-frame img {
+      height: clamp(300px, 46vh, 420px);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero-3d-shell {
+      width: min(100%, 360px);
+    }
+
+    .hero-photo-frame {
+      border-radius: 1.6rem;
+    }
+
+    .hero-photo-frame::before {
+      inset: 9px;
+      border-radius: 1.3rem;
+    }
+
+    .hero-photo-frame img {
+      height: clamp(280px, 78vw, 360px);
+    }
+
+    .floating-badge {
+      gap: 0.35rem;
+      padding: 0.55rem 0.7rem;
+      font-size: 0.58rem;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-specialty-dock {
+      padding: 0.75rem;
+    }
+
+    .hero-specialty-dock > div {
+      gap: 0.5rem;
+      padding: 0.65rem;
+    }
+
+    .hero-specialty-dock p:last-child {
+      font-size: 0.75rem;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .hero-3d-shell {
+      width: 100%;
+    }
+
+    .floating-badge {
+      padding: 0.45rem 0.55rem;
+      font-size: 0.52rem;
+    }
+
+    .hero-specialty-dock p:last-child {
+      font-size: 0.68rem;
+    }
   }
 
   .hero-grid-overlay {
@@ -236,6 +301,21 @@
     bottom: 11%;
     left: -2%;
     animation-delay: 2s;
+  }
+
+  @media (max-width: 640px) {
+    .floating-badge.top-left {
+      left: 3%;
+    }
+
+    .floating-badge.top-right {
+      right: 3%;
+    }
+
+    .floating-badge.bottom-left {
+      bottom: 24%;
+      left: 3%;
+    }
   }
 
   @keyframes float {
