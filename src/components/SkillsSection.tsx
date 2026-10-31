@@ -3,70 +3,90 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const skillCategories = [
   {
-    title: "Languages & Frameworks",
-    icon: Code,
-    skills: ["PHP", "Laravel", "CodeIgniter", "JavaScript", "jQuery", "Node.js", "React JS", "Python"],
+    title: "Frontend & UI",
+    icon: Palette,
+    skills: ["HTML", "CSS", "JavaScript", "jQuery", "Bootstrap", "React JS", "Next.js", "Livewire", "Filament"],
     color: "primary"
   },
   {
-    title: "Frontend Technologies",
-    icon: Palette,
-    skills: ["HTML", "CSS", "Bootstrap", "Filament", "Livewire"],
+    title: "Backend & APIs",
+    icon: Code,
+    skills: ["PHP", "Laravel", "CodeIgniter", "Node.js", "REST APIs", "GraphQL", "WebSockets", "AppScript", "Postman"],
     color: "accent"
   },
   {
     title: "Databases",
     icon: Database,
-    skills: ["MySQL", "SQLite", "MongoDB", "Firebase", "Supabase"],
+    skills: ["MySQL", "PostgreSQL", "MongoDB", "SQLyog", "Firebase", "Supabase", "Redis"],
     color: "primary"
   },
   {
-    title: "Cloud & Hosting",
-    icon: Cloud,
-    skills: ["AWS (EC2, S3, RDS, SES)", "GCP", "SiteGround", "GoDaddy", "WHM", "Bluehost", "Hostinger", "A2 Hosting", "Cloudflare", "DigitalOcean", "Cloudways", "Vercel", "Netlify", "Heroku"],
+    title: "Frameworks & Platforms",
+    icon: Zap,
+    skills: ["Laravel", "CodeIgniter", "Node.js", "React JS", "Next.js", "Shopify"],
+    color: "accent"
+  },
+  {
+    title: "Automation & QA",
+    icon: Workflow,
+    skills: ["Playwright", "Chromium", "Puppeteer", "Browser automation", "Web scraping", "API automation", "Automation testing"],
+    color: "primary"
+  },
+  {
+    title: "Version Control & IDEs",
+    icon: FileCode,
+    skills: ["Git", "GitLab", "GitHub", "Bitbucket", "VS Code", "PHPStorm", "Cursor", "Sublime Text", "Notepad++", "Antigravity"],
     color: "accent"
   },
   {
     title: "Payment Integrations",
     icon: CreditCard,
-    skills: ["Stripe", "PayPal", "GCash", "Paytm", "PhonePe", "Pabbly"],
+    skills: ["Stripe", "PayPal", "GCash", "Paytm", "PhonePe", "Pabbly", "Shopify payments"],
     color: "primary"
   },
   {
-    title: "Automation & DevOps",
-    icon: Workflow,
-    skills: ["n8n", "Zapier", "Make.com", "Airtable", "ElevenLabs", "Git", "GitLab", "GitHub", "Bitbucket", "CI/CD", "MCP server"],
-    color: "accent"
-  },
-  {
-    title: "Server Management",
-    icon: Server,
-    skills: ["cPanel", "WHM", "SSH", "FTP/SFTP", "Linux Commands", "Apache", "Nginx"],
-    color: "primary"
-  },
-  {
-    title: "Other Tools & Technologies",
-    icon: Zap,
-    skills: ["RESTful APIs", "GraphQL", "WebSockets", "Docker", "Postman"],
-    color: "accent"
-  },
-  {
-    title: "Task Management Tools",
-    icon: CheckSquare,
-    skills: ["Jira", "Trello", "Asana", "ClickUp", "Notion", "Monday.com"],
-    color: "primary"
-  },
-  {
-    title: "IDEs",
-    icon: FileCode,
-    skills: ["VS Code", "PHPStorm", "Cursor", "Sublime Text", "Notepad++", "Google Antigravity", "Pieces"],
-    color: "accent"
-  },
-  {
-    title: "AI platforms",
+    title: "AI Tools & Agents",
     icon: Bot,
-    skills: ["ChatGPT", "Claude", "Gemini", "Perplexity", "Amazon Q", "GitHub Copilot", "Grok"],
+    skills: ["ChatGPT", "Claude", "Gemini", "Perplexity", "GitHub Copilot", "Amazon Q", "AI agents", "Chatbots", "Agent building", "LLM workflows", "Voice AI"],
+    color: "accent"
+  },
+  {
+    title: "Automation Tools",
+    icon: Workflow,
+    skills: ["n8n", "Zapier", "Make.com", "Airtable", "ElevenLabs", "Windmill", "AppScript", "API automation workflows"],
     color: "primary"
+  },
+  {
+    title: "Cloud & Hosting",
+    icon: Cloud,
+    skills: ["AWS", "GCP", "SiteGround", "GoDaddy", "WHM", "Bluehost", "Hostinger", "A2 Hosting", "Cloudways", "Vercel", "Render", "Railway", "Heroku", "Netlify"],
+    color: "accent"
+  },
+  {
+    title: "Cloud Computing",
+    icon: Server,
+    skills: [
+      "AWS",
+      "EC2",
+      "S3",
+      "RDS",
+      "SES",
+      "Amazon Q",
+      "GCP",
+      "Compute Engine",
+      "Cloud Storage",
+      "Cloud SQL",
+      "Cloud Run",
+      "Cloud Functions",
+      "Vertex AI"
+    ],
+    color: "primary"
+  },
+  {
+    title: "Voice AI Agents",
+    icon: Bot,
+    skills: ["Retell AI", "ElevenLabs", "Bland AI", "Twilio", "Speech-to-Text", "Text-to-Speech", "Call Automation", "LLM workflows"],
+    color: "accent"
   }
 ];
 
@@ -83,7 +103,7 @@ const SkillsSection = () => {
             Technical <span className="text-gradient">Skills</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            A comprehensive toolkit built over 3+ years of professional development experience
+            A toolkit built around PHP, Laravel, cloud platforms, automation workflows, and modern backend delivery
           </p>
         </div>
 

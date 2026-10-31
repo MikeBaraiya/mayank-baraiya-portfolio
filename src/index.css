@@ -126,9 +126,121 @@
     animation: gradient 8s ease infinite;
   }
 
+  .hero-3d-shell {
+    position: relative;
+    width: min(100%, 520px);
+    transform-style: preserve-3d;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    will-change: transform;
+  }
+
+  .hero-visual-glow {
+    position: absolute;
+    inset: 5% 10% -8% 10%;
+    border-radius: 2.8rem;
+    background: radial-gradient(circle at center, rgba(45, 212, 191, 0.24), rgba(147, 51, 234, 0.13) 28%, rgba(11, 15, 25, 0.08) 58%, transparent 76%);
+    filter: blur(32px);
+    transform: translateZ(20px);
+  }
+
+  .hero-photo-frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2.3rem;
+    border: 1px solid rgba(96, 165, 250, 0.32);
+    background: linear-gradient(145deg, rgba(10, 15, 24, 0.98), rgba(11, 15, 25, 0.92) 42%, rgba(6, 10, 17, 0.96));
+    box-shadow:
+      inset 10px 10px 20px rgba(255, 255, 255, 0.04),
+      inset -18px -18px 32px rgba(2, 6, 23, 0.82),
+      0 35px 90px rgba(3, 7, 18, 0.95),
+      0 0 0 1px rgba(45, 212, 191, 0.18),
+      0 0 36px rgba(45, 212, 191, 0.18),
+      0 0 80px rgba(168, 85, 247, 0.08);
+    transform: translateZ(42px) scale(1.02);
+    transition: transform 0.25s ease;
+  }
+
+  .hero-photo-frame::before {
+    content: "";
+    position: absolute;
+    inset: 14px;
+    border-radius: 1.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 0 22px rgba(45, 212, 191, 0.08), inset 0 0 24px rgba(168, 85, 247, 0.05);
+    pointer-events: none;
+  }
+
+  .hero-photo-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 22%, transparent 60%, rgba(103, 232, 249, 0.08));
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+
+  .hero-photo-frame img {
+    display: block;
+    width: 100%;
+    height: 620px;
+    object-fit: cover;
+    filter: saturate(1.08) contrast(1.06) brightness(0.98);
+    transform: translateZ(30px) scale(1.04);
+  }
+
+  .hero-grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(103, 232, 249, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(103, 232, 249, 0.08) 1px, transparent 1px),
+      radial-gradient(circle at center, rgba(103, 232, 249, 0.18), rgba(15, 23, 42, 0.08) 45%, rgba(15, 23, 42, 0) 70%);
+    background-size: 22px 22px, 22px 22px, 100% 100%;
+    mask-image: radial-gradient(circle at center, black 42%, transparent 92%);
+    pointer-events: none;
+  }
+
+  .floating-badge {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.2rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(103, 232, 249, 0.42);
+    background: rgba(12, 17, 26, 0.58);
+    color: rgba(255,255,255,0.95);
+    font-size: 0.72rem;
+    font-family: var(--font-mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 20px 40px rgba(1, 6, 15, 0.35), 0 0 24px rgba(34, 211, 238, 0.16);
+    transform: translateZ(100px);
+    animation: float 6s ease-in-out infinite;
+    z-index: 30;
+  }
+
+  .floating-badge.top-left {
+    top: 7%;
+    left: -11%;
+  }
+
+  .floating-badge.top-right {
+    top: 7%;
+    right: -11%;
+    animation-delay: 1s;
+  }
+
+  .floating-badge.bottom-left {
+    bottom: 11%;
+    left: -2%;
+    animation-delay: 2s;
+  }
+
   @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
+    0%, 100% { transform: translateY(0px) translateZ(100px); }
+    50% { transform: translateY(-16px) translateZ(100px); }
   }
 
   @keyframes gradient {

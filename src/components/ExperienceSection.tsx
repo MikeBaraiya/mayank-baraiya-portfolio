@@ -9,11 +9,11 @@ const experiences = [
     period: "06/2022 - Present",
     current: true,
     highlights: [
-      "Managed, handled, and developed multiple projects across different clients simultaneously",
-      "Worked on backend development tasks, feature updates, and issue resolutions",
-      "Supported deployments, server management, and automation workflows",
-      "Implemented automation using tools like n8n, ElevenLabs, Zapier, and Airtable",
-      "Managed project repositories and participated in CI/CD-based deployments"
+      "Joined in June 2022 and continue to work here to the present, contributing to multiple client projects simultaneously",
+      "Managed, handled, and developed multiple projects across different clients",
+      "Worked on backend development tasks, feature updates, and issue resolutions across various projects",
+      "Supported deployments, server management, and automation workflows for internal and client processes",
+      "Implemented automation using tools like n8n, ElevenLabs, Zapier, and Airtable to improve efficiency"
     ]
   },
   {
@@ -23,10 +23,10 @@ const experiences = [
     period: "11/2021 - 06/2022",
     current: false,
     highlights: [
-      "Started as a fresher and completed comprehensive training in PHP and CodeIgniter",
-      "Worked on real project tasks, contributing to live modules and practical development",
-      "Built a strong foundation in backend development through continuous learning",
-      "Grew into a confident PHP & CodeIgniter developer handling tasks independently"
+      "Joined the company as a fresher and completed comprehensive training in PHP and CodeIgniter",
+      "Worked on real project tasks, contributing to live modules and practical development work",
+      "Built a strong foundation in backend development through continuous learning and practical implementation",
+      "Grew into a confident PHP & CodeIgniter developer, capable of handling development tasks independently"
     ]
   }
 ];

@@ -91,6 +91,22 @@ const projects = [
     highlights: ["Data Scraping", "Google Sheets Integration", "Automation"]
   },
   {
+    title: "Custom E-commerce Store",
+    description: "Custom Laravel-based e-commerce website for a premium baseball bat brand featuring product catalog pages, category browsing, custom bat builder, team sales, and specialized product detail layouts. The platform allows administrators to manage product details, pricing, content, categories, collections, and storefront information through an admin panel, making the site easy to maintain and scale.",
+    technologies: ["Laravel", "MySQL", "JavaScript", "HTML", "CSS", "Bootstrap", "Admin Panel", "FedEx API", "USPS", "Stripe", "PayPal", "Git", "CI/CD"],
+    github: "#",
+    live: "https://tomahawkbats.com/",
+    highlights: ["Custom storefront", "Admin-managed catalog", "Product & category management", "Team/custom order flow", "E-commerce content control"]
+  },
+  {
+    title: "Voice AI Agent & Call Automation",
+    description: "AI-powered voice assistant connected to a Twilio number that orchestrates 8 specialized sub-agents under 1 main routing agent. The system captures patient details such as name, email, phone number, and appointment type, supports English and Spanish, checks doctor availability, records patient notes, books appointments, and sends confirmation and reminder emails and SMS to both the patient and the clinic. It streamlines the full scheduling workflow with multilingual conversation support and automated follow-ups.",
+    technologies: ["n8n", "Retell AI", "Twilio", "ChatGPT 5.1", "Multilingual LLM", "Cal.com", "GHL", "SMS", "Email", "MySQL"],
+    github: "#",
+    live: null,
+    highlights: ["Multi-agent orchestration", "English & Spanish support", "Appointment booking", "Email & SMS reminders", "Doctor availability check"]
+  },
+  {
     title: "AI-Powered Product Recommendation Engine",
     description: "Intelligent automation system that analyzes user preferences from form submissions and recommends personalized products using AI models with n8n workflow integration.",
     technologies: ["n8n", "WordPress", "AI models", "Gravity Form"],
@@ -127,21 +143,21 @@ const ProjectsSection = () => {
               {/* Background gradient */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-              <div className="relative z-10 p-6 flex flex-col h-full">
+              <div className="relative z-10 p-6 flex flex-col h-full gap-4">
                 {/* Header */}
-                <div className="mb-4">
-                  <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">
                     {project.title}
                   </h3>
                 </div>
 
                 {/* Description */}
-                <p className="text-sm text-muted-foreground mb-4 flex-grow">
+                <p className="text-sm text-muted-foreground flex-grow leading-relaxed">
                   {project.description}
                 </p>
 
                 {/* Highlights */}
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-wrap gap-2">
                   {project.highlights.map((highlight) => (
                     <span
                       key={highlight}
@@ -154,7 +170,7 @@ const ProjectsSection = () => {
                 </div>
 
                 {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-2 mt-auto pt-1">
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
@@ -166,7 +182,7 @@ const ProjectsSection = () => {
                 </div>
 
                 {/* Links */}
-                <div className="flex gap-4 pt-4 border-t border-border/30">
+                {/* <div className="flex gap-4 pt-4 border-t border-border/30">
                   {project.live && (
                     <a
                       href={project.live}
@@ -178,7 +194,7 @@ const ProjectsSection = () => {
                       Live Demo
                     </a>
                   )}
-                </div>
+                </div> */}
               </div>
             </div>
           ))}

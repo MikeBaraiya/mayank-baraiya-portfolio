@@ -57,7 +57,7 @@ const Footer = () => {
               <span className="text-3xl font-bold text-gradient">MB</span>
             </div>
             <p className="text-sm text-muted-foreground max-w-xs">
-              Laravel Developer specializing in building exceptional digital experiences with modern web technologies.
+              Fullstack developer and AI automation specialist focused on building scalable products, smart workflows, and agent-driven experiences.
             </p>
             <div className="flex items-center gap-3">
               {socialLinks.map((social) => (
@@ -115,7 +115,7 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">Tech Stack</h3>
             <div className="flex flex-wrap gap-2">
-              {["PHP", "Laravel", "CodeIgniter", "MySQL", "n8n", "AWS", "Git"].map((tech) => (
+              {["Laravel", "Next.js", "Node.js", "Express", "React", "Python", "AI", "n8n", "Twilio", "AWS", "Git"].map((tech) => (
                 <span
                   key={tech}
                   className="px-3 py-1 text-xs font-mono rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors cursor-default"
