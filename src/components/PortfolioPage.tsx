@@ -1,3 +1,5 @@
+"use client";
+
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import ProfileHighlightsSection from "@/components/ProfileHighlightsSection";
@@ -8,7 +10,7 @@ import ProjectsSection from "@/components/ProjectsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
-const Index = () => {
+export default function PortfolioPage() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -24,6 +26,4 @@ const Index = () => {
       <Footer />
     </div>
   );
-};
-
-export default Index;
+}

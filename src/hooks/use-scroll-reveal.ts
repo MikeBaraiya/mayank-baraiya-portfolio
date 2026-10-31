@@ -7,8 +7,11 @@ interface UseScrollRevealOptions {
 
 export const useScrollReveal = (options: UseScrollRevealOptions = {}) => {
   const elementRef = useRef<HTMLDivElement>(null);
-  
+
   useEffect(() => {
+    const element = elementRef.current;
+    if (!element) return;
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -17,20 +20,16 @@ export const useScrollReveal = (options: UseScrollRevealOptions = {}) => {
         }
       });
     }, {
-      threshold: options.threshold || 0.1,
-      rootMargin: options.rootMargin || '0px 0px -50px 0px',
+      threshold: options.threshold ?? 0.1,
+      rootMargin: options.rootMargin ?? '0px 0px -50px 0px',
     });
 
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
-    }
+    observer.observe(element);
 
     return () => {
-      if (elementRef.current) {
-        observer.unobserve(elementRef.current);
-      }
+      observer.unobserve(element);
     };
-  }, [options]);
+  }, [options.rootMargin, options.threshold]);
 
   return elementRef;
 };

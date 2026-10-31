@@ -24,16 +24,14 @@ Result-oriented Backend Developer skilled in building scalable APIs, developing 
 
 This project is built with:
 
-### Frontend
-- **Vite** - Fast build tool
+### Application
+- **Next.js** - React framework with App Router
 - **TypeScript** - Type-safe JavaScript
 - **React** - UI library
 - **shadcn-ui** - Component library
 - **Tailwind CSS** - Utility-first CSS
 
-### Backend
-- **Node.js** - Runtime environment
-- **Express** - Web framework
+### Email
 - **Gmail SMTP** - Contact form email delivery
 
 ## 🚀 Quick Start
@@ -59,26 +57,14 @@ This project is built with:
    ```bash
    cp .env.example .env
    ```
-   
-   Then update `.env` with your Gmail SMTP credentials:
-   ```env
-   GMAIL_EMAIL=your-gmail-address@gmail.com
-   GMAIL_APP_PASSWORD=your-16-character-app-password
-   GMAIL_SENDER_NAME=Portfolio Contact
-   ADMIN_EMAIL=002mikebaraiya@gmail.com
-   SMTP_HOST=smtp.gmail.com
-   SMTP_PORT=587
-   SMTP_SECURE=false
-   PORT=5000
-   ```
+   Set the Gmail credentials in `.env` for local work. Keep the App Password secret and do not commit it.
 
 4. **Run development server**
    ```bash
-   npm run dev:full
+   npm run dev
    ```
    
-   - Frontend: http://localhost:3000
-   - Backend API: http://localhost:5000
+   Open http://localhost:3000. The contact endpoint is served by Next.js at `/api/send-contact-email`.
 
 ### Build for Production
 
@@ -89,9 +75,9 @@ npm start
 
 ## 📧 Email Setup
 
-Enable Google 2-Step Verification, create an App Password for Mail, and set `GMAIL_EMAIL`, `GMAIL_APP_PASSWORD`, `GMAIL_SENDER_NAME`, and `ADMIN_EMAIL`. Add the Gmail variables to Vercel Project Settings and redeploy. Gmail SMTP may be blocked or unreliable from serverless hosting; local Express testing uses `smtp.gmail.com:587`, but Vercel delivery must be verified from its function logs and may require a mail API provider instead.
+Enable Google 2-Step Verification, create an App Password for Mail, and set `GMAIL_EMAIL`, `GMAIL_APP_PASSWORD`, `GMAIL_SENDER_NAME`, and `ADMIN_EMAIL`. Add the same variables to Vercel Project Settings and redeploy. The API route uses Node.js runtime and Nodemailer. Gmail SMTP connectivity from Vercel must be tested in the deployed function; if SMTP is blocked or times out, use an email provider's HTTPS API instead.
 
 ## 🌐 Deployment
 
-See `RENDER_DEPLOYMENT.md` for deployment instructions to Render or other hosting providers.
+For Vercel, select the **Next.js** framework preset, use `npm run build`, and leave the output directory at its Next.js default. Set the Gmail values as environment variables for the required deployment environments, then redeploy.
 

@@ -105,7 +105,7 @@ const HeroSection = () => {
               <div className="hero-photo-frame">
                 <div className="hero-grid-overlay" />
                 <img
-                  src={profilePhoto}
+                  src={profilePhoto.src}
                   alt="Mayank Baraiya"
                   className="w-full h-full object-cover object-center"
                 />
