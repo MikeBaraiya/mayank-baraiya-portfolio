@@ -34,13 +34,13 @@ This project is built with:
 ### Backend
 - **Node.js** - Runtime environment
 - **Express** - Web framework
-- **Resend** - Email API service
+- **Gmail SMTP** - Contact form email delivery
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 - Node.js 18+ installed
-- Resend account (free tier available)
+- Gmail account with 2-Step Verification and an App Password
 
 ### Setup
 
@@ -60,11 +60,16 @@ This project is built with:
    cp .env.example .env
    ```
    
-   Then update `.env` with your Resend API key:
+   Then update `.env` with your Gmail SMTP credentials:
    ```env
-   RESEND_API_KEY=re_your_api_key_here
+   GMAIL_EMAIL=your-gmail-address@gmail.com
+   GMAIL_APP_PASSWORD=your-16-character-app-password
+   GMAIL_SENDER_NAME=Portfolio Contact
    ADMIN_EMAIL=002mikebaraiya@gmail.com
-   PORT=5001
+   SMTP_HOST=smtp.gmail.com
+   SMTP_PORT=587
+   SMTP_SECURE=false
+   PORT=5000
    ```
 
 4. **Run development server**
@@ -72,8 +77,8 @@ This project is built with:
    npm run dev:full
    ```
    
-   - Frontend: http://localhost:8080
-   - Backend API: http://localhost:5001
+   - Frontend: http://localhost:3000
+   - Backend API: http://localhost:5000
 
 ### Build for Production
 
@@ -84,7 +89,7 @@ npm start
 
 ## 📧 Email Setup
 
-See `RESEND_SETUP.md` for detailed email configuration instructions.
+Enable Google 2-Step Verification, create an App Password for Mail, and set `GMAIL_EMAIL`, `GMAIL_APP_PASSWORD`, `GMAIL_SENDER_NAME`, and `ADMIN_EMAIL`. Add the Gmail variables to Vercel Project Settings and redeploy. Gmail SMTP may be blocked or unreliable from serverless hosting; local Express testing uses `smtp.gmail.com:587`, but Vercel delivery must be verified from its function logs and may require a mail API provider instead.
 
 ## 🌐 Deployment
 

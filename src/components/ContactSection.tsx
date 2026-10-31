@@ -44,7 +44,7 @@ const ContactSection = () => {
 
     // Phone validation (optional but validate if provided)
     if (formData.phone.trim()) {
-      if (!/^[\d\s\-\+\(\)]+$/.test(formData.phone)) {
+      if (!/^[\d\s()+-]+$/.test(formData.phone)) {
         newErrors.phone = "Phone number can only contain digits, spaces, dashes, plus, and parentheses";
       } else if (formData.phone.replace(/\D/g, '').length < 10) {
         newErrors.phone = "Phone number must contain at least 10 digits";
@@ -90,19 +90,17 @@ const ContactSection = () => {
     setIsLoading(true);
 
     try {
-      const baseUrl = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? '' : 'http://localhost:5000');
-      const apiUrl = `${baseUrl}/api/send-contact-email`;
-
-      const response = await fetch(apiUrl, {
+      const result = await fetch('/api/send-contact-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
-      }).then(res => res.json());
+      });
+      const response = await result.json().catch(() => null);
 
-      if (!response.success && response.error) {
-        throw new Error(response.error);
+      if (!result.ok || !response?.success) {
+        throw new Error(response?.error || `Request failed (${result.status})`);
       }
 
       toast({
@@ -111,11 +109,11 @@ const ContactSection = () => {
       });
       setFormData({ name: "", email: "", phone: "", message: "" });
       setErrors({});
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Error sending message:", error);
       toast({
         title: "Error sending message",
-        description: error.message || "Please try again or contact me directly via email.",
+        description: error instanceof Error ? error.message : "Please try again or contact me directly via email.",
         variant: "destructive",
       });
     } finally {

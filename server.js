@@ -1,16 +1,16 @@
 import express from 'express';
-// import nodemailer from 'nodemailer'; // Commented out - replaced with Resend
-import { Resend } from 'resend';
+import { sendGmailEmail } from './lib/gmail.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+dotenv.config({ path: '.env.local' });
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const API_URL = process.env.VITE_API_URL;
+const API_URL = process.env.API_URL || `http://localhost:${PORT}`;
 
 // Middleware
 app.use(cors());
@@ -150,81 +150,9 @@ function generateUserEmail(name, message, email, phone) {
 </html>`;
 }
 
-// Validate environment variables
-const validateCredentials = () => {
-    const apiKey = process.env.RESEND_API_KEY;
-
-    if (!apiKey) {
-        console.warn('⚠️  Resend API key not configured properly');
-        console.warn('Please set RESEND_API_KEY in .env file');
-        console.warn('Get your API key from: https://resend.com/api-keys');
-        return false;
-    }
-    return true;
-};
-
-// Initialize Resend client
-let resend = null;
-
-if (validateCredentials()) {
-    resend = new Resend(process.env.RESEND_API_KEY);
-    console.log('✅ Resend API initialized successfully!');
-    console.log('📧 Email service ready');
-} else {
-    console.log('⚠️  Email functionality disabled - Resend API key not configured');
-}
-
-/* GMAIL SMTP CODE - COMMENTED OUT (Replaced with Resend)
-// Create Nodemailer transporter with Google SMTP
-let transporter = null;
-
-if (validateCredentials()) {
-    // SMTP Configuration - supports multiple options
-    const smtpConfig = {
-        host: process.env.SMTP_HOST || 'smtp.gmail.com',
-        port: parseInt(process.env.SMTP_PORT || '587'),
-        secure: process.env.SMTP_SECURE === 'true' ? true : false, // true for 465 (SSL), false for 587 (STARTTLS)
-        auth: {
-            user: process.env.GMAIL_EMAIL,
-            pass: process.env.GMAIL_APP_PASSWORD,
-        },
-    };
-
-    transporter = nodemailer.createTransport(smtpConfig);
-
-    // Test email connection on startup
-    transporter.verify((error, success) => {
-        if (error) {
-            console.error('❌ SMTP connection failed:', error.message);
-            console.error('💡 Please check your GMAIL_EMAIL and GMAIL_APP_PASSWORD in .env');
-            console.error('📝 SMTP Configuration:', {
-                host: smtpConfig.host,
-                port: smtpConfig.port,
-                secure: smtpConfig.secure,
-            });
-        } else {
-            console.log('✅ SMTP connection successful!');
-            console.log('📝 SMTP Configuration:', {
-                host: smtpConfig.host,
-                port: smtpConfig.port,
-                secure: smtpConfig.secure,
-            });
-        }
-    });
-} else {
-    console.log('⚠️  Email functionality disabled - credentials not configured');
-}
-*/
-
 // Email endpoint
 app.post('/api/send-contact-email', async (req, res) => {
     try {
-        if (!resend) {
-            return res.status(500).json({
-                error: 'Email service not configured. Please set RESEND_API_KEY in .env file',
-            });
-        }
-
         const { name, email, phone, message } = req.body;
 
         // Comprehensive validation with detailed error messages
@@ -282,27 +210,29 @@ app.post('/api/send-contact-email', async (req, res) => {
             });
         }
 
-        // Send email to yourself (admin) using Resend
-        const adminEmail = await resend.emails.send({
-            from: 'Portfolio Contact <onboarding@resend.dev>', // Resend's test email
+        // Send the admin notification through Gmail SMTP.
+        const adminDelivery = await sendGmailEmail({
             to: process.env.ADMIN_EMAIL || '002mikebaraiya@gmail.com',
+            replyTo: email,
             subject: `🎉 New Contact Form Submission from ${name}`,
             html: generateAdminEmail(name, email, phone, message),
         });
 
-        // Send confirmation email to user using Resend
-        const userEmail = await resend.emails.send({
-            from: 'Mayank Baraiya <onboarding@resend.dev>', // Resend's test email
-            to: email,
-            subject: 'We received your message - Mayank Baraiya',
-            html: generateUserEmail(name, message, email, phone),
-        });
-
-        console.log('✅ Emails sent successfully:', { adminEmail: adminEmail.data?.id, userEmail: userEmail.data?.id });
+        // Send a confirmation to the visitor without failing the admin notification.
+        try {
+            await sendGmailEmail({
+                to: email,
+                subject: 'We received your message - Mayank Baraiya',
+                html: generateUserEmail(name, message, email, phone),
+            });
+        } catch (confirmationError) {
+            console.warn('Admin email was accepted, but confirmation email failed:', confirmationError);
+        }
 
         res.status(200).json({
             success: true,
-            message: 'Email sent successfully!',
+            message: 'Email accepted for delivery!',
+            emailId: adminDelivery.messageId,
         });
     } catch (error) {
         console.error('Error sending email:', error);
@@ -317,31 +247,27 @@ app.post('/api/send-contact-email', async (req, res) => {
 app.get('/api/health', (req, res) => {
     res.json({
         status: 'Server is running',
-        emailService: 'Resend',
-        emailConfigured: resend ? 'Yes' : 'No'
+        emailService: 'Gmail SMTP',
+        emailConfigured: process.env.GMAIL_EMAIL && process.env.GMAIL_APP_PASSWORD ? 'Yes' : 'No'
     });
 });
 
 // Test email endpoint
 app.post('/api/test-email', async (req, res) => {
     try {
-        if (!resend) {
-            return res.status(500).json({
-                error: 'Email service not configured. Please set RESEND_API_KEY in .env file',
-            });
-        }
-
-        const testEmail = await resend.emails.send({
-            from: 'Test <onboarding@resend.dev>',
+        const delivery = await sendGmailEmail({
             to: process.env.ADMIN_EMAIL || '002mikebaraiya@gmail.com',
             subject: 'Test Email from Portfolio Server',
-            html: '<h2 style="color:#00d9d9;">Test Email</h2><p>If you received this, your Resend email configuration is working!</p>',
+            html: '<h2 style="color:#00d9d9;">Test Email</h2><p>If you received this, your Gmail SMTP configuration is working!</p>',
         });
 
         res.status(200).json({
             success: true,
-            message: 'Test email sent successfully!',
-            emailId: testEmail.data?.id
+            message: 'Gmail SMTP accepted the message; this does not confirm inbox delivery.',
+            emailId: delivery.messageId,
+            acceptedRecipients: delivery.accepted,
+            rejectedRecipients: delivery.rejected,
+            smtpResponse: delivery.smtpResponse,
         });
     } catch (error) {
         console.error('Test email error:', error);
